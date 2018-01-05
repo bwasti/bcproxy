@@ -35,7 +35,7 @@ class Client {
     this.client.write(packet);
   }
 
-  register(protocol, callback) {
+  read(protocol, callback) {
     this.dataEventHandler[protocol] = callback;
   }
 
@@ -46,7 +46,7 @@ class Client {
 
 let c = new Client('127.0.0.1', 1337);
 
-c.register(bcproxy_protocol.DATA, function(d) {
+c.read(bcproxy_protocol.DATA, function(d) {
   console.log(d);
   let packetsUsed = new BigNumber(d.packetsUsed);
   let packetPrice = new BigNumber(d.packetPrice);
